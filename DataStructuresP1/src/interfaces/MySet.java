@@ -78,6 +78,8 @@ public interface MySet<E> extends Iterable<E>, Cloneable {
      * @return array of type Object[] containing all the elements of
      * this set. 
      */
-    Object[] toArray(); 
+    Object[] toArray();
+
+	void sort(Integer[][][] dataset, Object object); 
 }
 

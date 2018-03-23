@@ -13,10 +13,8 @@ import setIntersectionFinders.AbstractIntersectionFinder;
 
 public class P4Solution<E> extends AbstractIntersectionFinder<E>  {
 
-	public P4Solution(String name) throws InvalidNameException {
+	public P4Solution(String name){
 		super(name);
-		if(!name.equals("4")) throw new InvalidNameException("This is not an implemented set.");
-
 	}
 
 
