@@ -6,6 +6,7 @@ import interfaces.MySet;
 import java.util.ArrayList;
 import java.util.Map;
 
+import dataGenerator.DataGenerator;
 import solutions.P1P2Solution;
 import solutions.P3Solution;
 import solutions.P4Solution;
@@ -35,6 +36,8 @@ public class StrategiesTimeCollection<E> extends ArrayList<Map.Entry<Integer, Fl
     // executions for the same time take. It is eventually used
     // to determine the average execution time for a particular 
     // size.....
+    
+    Integer[][][] dataset = (Integer[][][]) new DataGenerator(n, m, size).generateData();
     
     public StrategiesTimeCollection(IntersectionFinder<E> strategy) { 
         this.strategy = strategy; 

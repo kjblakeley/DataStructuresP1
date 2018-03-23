@@ -20,6 +20,8 @@ import experimentalClasses.StrategiesTimeCollection;
  */
 public class ExperimentController{
 	
+	private int n;						//telephone companies
+	private int m;						//crime events
 	private int initialSize;           // initial size to be tested
 	private int repetitionsPerSize;    // experimental repetitions per size
 	private int incrementalSizeStep;   // change of sizes (size delta)
@@ -31,7 +33,9 @@ public class ExperimentController{
 	// pairs (n, t), where t is the estimated time for size n for
 	// the strategy at that position. 
 	
-	public ExperimentController(int is, int fs, int iss, int rps) { 
+	public ExperimentController(int n,int m, int is, int fs, int iss, int rps) { 
+		this.n=n;
+		this.m=m;
 		initialSize = is; 
 		repetitionsPerSize = rps; 
 		incrementalSizeStep = iss; 
@@ -61,7 +65,7 @@ public class ExperimentController{
 			for (int r = 0; r<repetitionsPerSize; r++) {
 				// The following will be the common dataset to be used in the current 
 				// trial by all the strategies being tested.
-				Integer[] data = generateData(size);  
+				 Integer[][][] dataset = generateData(n, m, size);  
 				
 				// Apply each one of the strategies being tested using the previous 
 				// dataset (of size size) as input; and, for each, estimate the time
@@ -69,12 +73,11 @@ public class ExperimentController{
 				for (StrategiesTimeCollection<Integer> strategy : resultsPerStrategy) {  
 					// no need to clone the data set to be used by each strategy since
 					// no modification of it is done in the process...
-					long startTime = System.nanoTime(); // System.currentTimeMillis();   // time before
+					 long startTime = System.nanoTime();  // Measure system’s clock time before.
+			            strategy.runTrial(dataset);          // Run the strategy using the data in dataset.        
+			            long endTime = System.nanoTime();    // Measure system’s clock time after.
 
-					strategy.runTrial(data.clone());   // run the particular strategy...
-					
-					long endTime = System.nanoTime(); // System.currentTimeMillis();    // time after
-
+			            int estimatedTime = (int) (endTime-startTime);   // The estimated time.
 					// accumulate the estimated time (add it) to sum of times that
 					// the current strategy has exhibited on trials for datasets
 					// of the current size. 
