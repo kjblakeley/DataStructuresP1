@@ -19,37 +19,37 @@ public class P3Solution <E> extends AbstractIntersectionFinder<E>{
 	}
 
 	
-
+	ArrayList<E>  allElements = new ArrayList(); 
 	@Override
 	public MySet<E> intersectSets(MySet<E>[] t) {
-			ArrayList<Integer>  allElements = new ArrayList(); 
-		
-		if (this.getName() == "3"){ 
-		for (MySet<E> subset : t)
-	    {
-			Iterator iter = subset.iterator();
-			while(iter.hasNext()){
-			allElements.add((Integer) iter.next());
-			}
-	    }		
-		}	
+
+
+			for (MySet<E> subset : t)
+			{
+				Iterator<E> iter = subset.iterator();
+				while(iter.hasNext()){
+
+					allElements.add(iter.next());
+
+				}
+			}		
+			
 		allElements.sort(null);
-		MySet set = new Set2(); 
-		Integer e = allElements.get(0);
+		MySet<E> set = new Set2<E>(); 
+		E e = allElements.get(0);
 		Integer c = 1;
-		for (int i=1; i<=allElements.size(); i++) {
-		      if (i < allElements.size() && allElements.get(i).equals(e)) 
-		          c++;
-		      else { 
+		for (int i=1; i<allElements.size(); i++) {
+			if (allElements.get(i).equals(e)) 
+				c++;
+			else { 
 		          if (c == t.length) 
 		             set.add(e);   
 		          e = allElements.get(i); 
 		          c = 1; 
 		      } 
 		}
-		
-		
-		
+		if (c == t.length) 
+            set.add(allElements.get(allElements.size()-1));  
 		return set;
 	}
 		

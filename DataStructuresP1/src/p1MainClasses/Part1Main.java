@@ -32,9 +32,9 @@ public class Part1Main<E> {
 		Set2<Integer> set2 = (Set2<Integer>) finder2.intersectSets(unions2);
 		System.out.println("Final set by P2: " + set2);	
 		
-//		MySet<Integer>[] unions3 = (MySet<Integer>[]) toSetArray2(data);
-//		Set2<Integer> set3 = (Set2<Integer>) finder3.intersectSets(unions3);
-//		System.out.println("Final set by P3: " + set3);	
+		MySet<Integer>[] unions3 = (MySet<Integer>[]) toSetArray2(data);
+		Set2<Integer> set3 = (Set2<Integer>) finder3.intersectSets(unions3);
+		System.out.println("Final set by P3: " + set3);	
 		
 		MySet<Integer>[] unions4 = (MySet<Integer>[]) toSetArray2(data);
 		Set2<Integer> set4 = (Set2<Integer>) finder4.intersectSets(unions4);
