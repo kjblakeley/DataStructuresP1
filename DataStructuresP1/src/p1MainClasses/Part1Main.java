@@ -6,7 +6,7 @@ import dataGenerator.DataReader;
 import interfaces.MySet;
 import mySetImplementations.Set1;
 import mySetImplementations.Set2;
-import solutions.P1andP2;
+import solutions.P1P2Solution;
 
 public class Part1Main<E> {
 
@@ -15,8 +15,8 @@ public class Part1Main<E> {
 		DataReader dr = new DataReader();
 		Integer[][][] data = (Integer[][][]) dr.readDataFiles();
 		
-		P1andP2<Integer> finder = new P1andP2<Integer>("1");
-		P1andP2<Integer> finder2 = new P1andP2<Integer>("2");
+		P1P2Solution<Integer> finder = new P1P2Solution<Integer>("1");
+		P1P2Solution<Integer> finder2 = new P1P2Solution<Integer>("2");
 		
 		
 		MySet<Integer>[] unions = (MySet<Integer>[]) toSetArray1(data);

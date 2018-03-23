@@ -7,9 +7,9 @@ import mySetImplementations.Set1;
 import mySetImplementations.Set2;
 import setIntersectionFinders.AbstractIntersectionFinder;
 
-public class P1andP2<E> extends AbstractIntersectionFinder<E> {
+public class P1P2Solution<E> extends AbstractIntersectionFinder<E> {
 
-	public P1andP2(String name) {
+	public P1P2Solution(String name) {
 		super(name);
 		// TODO Auto-generated constructor stub
 	}
