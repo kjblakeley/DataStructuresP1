@@ -20,7 +20,7 @@ public class P4Solution<E> extends AbstractIntersectionFinder<E>  {
 	}
 
 
-
+//
 	@SuppressWarnings("unchecked")
 	@Override
 	public MySet<E> intersectSets(MySet<E>[] t) {
