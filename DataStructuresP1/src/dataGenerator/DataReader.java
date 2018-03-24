@@ -1,3 +1,4 @@
+
 package dataGenerator;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,11 +12,27 @@ import java.util.Scanner;
  */
 public class DataReader {
 
-	private int n;    // number of data generators (telephone companies in p1_4035_4020_172
-	private int m;    // number of data sets produced per data generator
+	private static int n;    // number of data generators (telephone companies in p1_4035_4020_172
+	private static int m;    // number of data sets produced per data generator
 	private Integer[][][] dataSet; 
 	private String parentDirectory; 
 	
+
+	public static int getN() {
+		return n;
+	}
+
+	public void setN(int n) {
+		this.n = n;
+	}
+
+	public static int getM() {
+		return m;
+	}
+
+	public void setM(int m) {
+		this.m = m;
+	}
 
 	public DataReader() throws FileNotFoundException {
 		parentDirectory = "inputFiles"; 

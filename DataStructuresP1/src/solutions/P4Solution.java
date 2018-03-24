@@ -1,3 +1,8 @@
+/*
+Gian Acevedo  802120065 Seccion 090
+Kevin J Blakeley 802120763 Seccion 030
+
+*/
 package solutions;
 
 import java.util.ArrayList;

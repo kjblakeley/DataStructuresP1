@@ -1,12 +1,20 @@
+/*
+Gian Acevedo  802120065 Seccion 090
+Kevin J Blakeley 802120763 Seccion 030
+
+*/
 package experimentalClasses;
 
 import interfaces.IntersectionFinder;
 import interfaces.MySet;
+import mySetImplementations.Set1;
+import mySetImplementations.Set2;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 import dataGenerator.DataGenerator;
+import dataGenerator.DataReader;
 import solutions.P1P2Solution;
 import solutions.P3Solution;
 import solutions.P4Solution;
@@ -37,7 +45,7 @@ public class StrategiesTimeCollection<E> extends ArrayList<Map.Entry<Integer, Fl
     // to determine the average execution time for a particular 
     // size.....
     
-    Integer[][][] dataset = (Integer[][][]) new DataGenerator(n, m, size).generateData();
+    //Integer[][][] dataset = (Integer[][][]) new DataGenerator(n, m, size).generateData();
     
     public StrategiesTimeCollection(IntersectionFinder<E> strategy) { 
         this.strategy = strategy; 
@@ -53,10 +61,30 @@ public class StrategiesTimeCollection<E> extends ArrayList<Map.Entry<Integer, Fl
         return strategy.getName(); 
     }
     
-    public void runTrial(MySet<E>[] data) { 
+    public void runTrial(E[][][] data) { 
     	
-    	strategy.intersectSets(data);
-    }
+    	MySet<E>[] t;
+        if(getStrategyName() == "1"){
+             t= new Set1[DataReader.getM()];
+        }
+        else{
+             t= new Set2[DataReader.getM()];
+        }
+        for (int j=0; j<DataReader.getM(); j++) {
+            if(getStrategyName() == "3" || getStrategyName() == "4"|| getStrategyName() == "2")
+                t[j] = new Set2<>();
+            else
+                t[j] = new Set1<>();
+            for (int i=0; i<DataReader.getN(); i++) {
+                for (int k = 0; k < data[i][j].length; k++)
+                    t[j].add(data[i][j][k]);  // add to set t[j] the element dataset[i][j][k]
+            }
+        }
+        
+    		strategy.intersectSets(t);
+    	}
+
+    
     
     public void resetSum() { 
     	sum = 0.0f; 
@@ -70,4 +98,32 @@ public class StrategiesTimeCollection<E> extends ArrayList<Map.Entry<Integer, Fl
     	return sum; 
     }
     
+    
+    private static <E> Object[] toSetArray1(E[][][] data){
+		MySet[] setArray = new MySet[data[0].length];
+		for(int i=0; i<50; i++){
+			Set1<E> array = new Set1<E>();
+			for(int j=0; j<20; j++){
+				for(int k=0; k<data[j][i].length; k++){
+					array.add(data[j][i][k]);
+				}
+			}
+			setArray[i] = array;
+		}
+		return setArray;
+	}
+	
+	private static <E> Object[] toSetArray2(E[][][] data){
+		MySet[] setArray = new MySet[data[0].length];
+		for(int i=0; i<50; i++){
+			Set2<E> array = new Set2<E>();
+			for(int j=0; j<20; j++){
+				for(int k=0; k<data[j][i].length; k++){
+					array.add(data[j][i][k]);
+				}
+			}
+			setArray[i] = array;
+		}
+		return setArray;
+	}
 }

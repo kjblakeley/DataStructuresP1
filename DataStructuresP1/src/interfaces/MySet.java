@@ -80,6 +80,6 @@ public interface MySet<E> extends Iterable<E>, Cloneable {
      */
     Object[] toArray();
 
-	void sort(Integer[][][] dataset, Object object); 
+	 
 }
 

@@ -1,3 +1,8 @@
+/*
+Gian Acevedo  802120065 Seccion 090
+Kevin J Blakeley 802120763 Seccion 030
+
+*/
 package p1MainClasses;
 
 import java.io.File;
@@ -10,15 +15,8 @@ import java.util.Map;
 import dataGenerator.DataGenerator;
 import experimentalClasses.StrategiesTimeCollection;
 
-/**
- * This class represents an object data type that is able to carry the 
- * necessary experiments to estimate execution times of particular 
- * strategies to solve the set intersections problem as in p1_40354020_172. 
- * 
- * @author pedroirivera-vega
- *
- */
-public class ExperimentController{
+
+public class ExperimentController<E>{
 	
 	private int n;						//telephone companies
 	private int m;						//crime events
@@ -28,10 +26,7 @@ public class ExperimentController{
 	private int finalSize;             // last size to be tested
 	
 	private ArrayList<StrategiesTimeCollection<Integer>> resultsPerStrategy; 
-	// The i-th position will contain a particular strategy being tested. 
-	// At the end, the i-th position will also contain a list of 
-	// pairs (n, t), where t is the estimated time for size n for
-	// the strategy at that position. 
+	
 	
 	public ExperimentController(int n,int m, int is, int fs, int iss, int rps) { 
 		this.n=n;
@@ -42,13 +37,12 @@ public class ExperimentController{
 		finalSize = fs; 
 		resultsPerStrategy = new ArrayList<>(); 
 		
-        //JPanel pane = new JPanel();      // this was intended for a progress bar....
-        //pane.setLayout(new FlowLayout());
+        
 
 	}
 	
-	public void addStrategy(StrategiesTimeCollection<Integer> strategy) { 
-		resultsPerStrategy.add(strategy); 
+	public void addStrategy(StrategiesTimeCollection<E> strategiesTimeCollection) { 
+		resultsPerStrategy.add((StrategiesTimeCollection<Integer>) strategiesTimeCollection); 
 	}
 
 	public void run() throws CloneNotSupportedException { 
@@ -96,10 +90,10 @@ public class ExperimentController{
 		}
 	}
 	
-	private Integer[] generateData(int size) {
-		DataGenerator dg = new DataGenerator(size);
-		Integer[] data = dg.generateData();  
-
+	private Integer[][][] generateData(int n, int m, int size) {
+		DataGenerator dg = new DataGenerator(n, m, size);
+		//Integer[] data = dg.generateData();  
+		Integer[][][] data = (Integer[][][]) dg.generateData();
 		return data;
 	}
 
